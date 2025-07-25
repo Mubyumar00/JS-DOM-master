@@ -3,6 +3,16 @@ import '../assets/css/style.css';
 const app = document.getElementById('app');
 app.innerHTML = `<h1>JAVASCRIPT DOM</h1>`;
 
+const div = document.createElement('div');
+const span = document.createElement('span');
+const p = document.createElement('p');
+const i = document.createElement('i');
+
+div.append(span);
+div.prepend(p);
+
+console.log(div, span, p, i);
+
 // 09 - Inserting DOM Elements
 
 // const data = ['Earth', 'Fire', 'Water', 'Air'];
