@@ -1,19 +1,75 @@
 import '../assets/css/style.css';
 
 const app = document.getElementById('app');
-
 app.innerHTML = `<h1>JAVASCRIPT DOM</h1>`;
 
-const h1 = document.createElement('h1');
+// 09 - Inserting DOM Elements
 
-h1.innerText = 'Ultimate Courses';
-h1.style.display = 'none';
+// const data = ['Earth', 'Fire', 'Water', 'Air'];
 
-app.append(h1);
+// const fragment = document.createDocumentFragment();
+// // console.dir(fragment);
 
-console.log(app.innerHTML);
-console.log(app.innerText); // Elements
-console.log(app.textContent); // Nodes
+// data.forEach((name) => {
+// 	const li = document.createElement('li');
+// 	li.innerText = name;
+// 	fragment.append(li);
+// });
+// app.append(fragment);
+
+// 09 - Using document fragments
+
+// Using document.createElement()
+// function createInputDOM({ label, type = 'text' }) {
+// 	const labelEl = document.createElement('label');
+// 	const inputEl = document.createElement('input');
+
+// 	inputEl.type = type;
+// 	labelEl.innerText = label;
+// 	labelEl.append(inputEl);
+
+// 	return labelEl;
+// }
+
+// const inputFromDOM = createInputDOM({ label: 'Name' });
+// console.log(inputFromDOM);
+// app.append(inputFromDOM);
+
+//  Using String Templates
+// function createInputTemplate({ label, type = 'text' }) {
+// 	return `
+// 	<label>
+// 	${label}
+// 	<input type="${type}">
+// 	</label>
+// 	`;
+// }
+
+// const inputFromTemplate = createInputTemplate({ label: 'Email', type: 'email' });
+// const inputFromTemplateTwo = createInputTemplate({ label: 'Password', type: 'password' });
+// app.innerHTML += inputFromTemplate;
+// app.innerHTML += inputFromTemplateTwo;
+
+// PART 08 -  innerHTML VS createELEMENT
+
+//
+// PART 07 - CHANGING CONTENTS OF DOM ELEMENTS
+
+// const h1 = document.createElement('h1');
+
+// h1.innerText = 'Ultimate Courses';
+// h1.innerText += 'Learning JS DOM';
+// h1.style.display = 'none';
+
+// const h2 = document.createElement('h2');
+// h2.innerText = 'DOM Practice';
+// h2.style.display = 'none';
+
+// app.append(h1, h2);
+
+// console.log(app.innerHTML);
+// console.log(app.innerText); // Elements
+// console.log(app.textContent); // Nodes
 
 // const div = document.createElement('div');
 // const text = document.createTextNode('DOM!');
