@@ -32,6 +32,14 @@ newListItem.className = 'list-item';
 newListItem.innerText = 'Air';
 ulFromId.append(newListItem);
 
+const ulFromQuerySelector = document.querySelector('#list');
+console.log(ulFromQuerySelector);
+
+ulFromQuerySelector.append(fragment);
+
+// ul {background: red;}
+// #list {background: red}
+
 // No need to query again since we using live collection
 console.log(listItemsFromClassName);
 console.log(listItemsFromTagname);
