@@ -2,27 +2,70 @@ import '../assets/css/style.css';
 
 const app = document.getElementById('app');
 app.innerHTML = `<h1>JAVASCRIPT DOM</h1>
-<div>
-	Replace me!
-</div>
+<ul id='list'></ul>
 `;
-const div = document.createElement('div');
-const span = document.createElement('span');
+const data = ['Earth', 'Fire', 'Water'];
+const fragment = document.createDocumentFragment();
 
-span.innerText = 'Can you clone me?';
-div.append(span);
+data.forEach((item) => {
+	const li = document.createElement('li');
+	li.className = 'list-item';
+	li.innerText = item;
+	fragment.append(li);
+});
 
-app.append(div);
+// getElementById: HTMLElement
+const ulFromId = document.getElementById('list');
+ulFromId.append(fragment);
 
-//cloneNode(false) only clones the top element.
-const clone = div.cloneNode();
-console.log(clone);
+// getElementByClassName: HTMLCollection
+const listItemsFromClassName = ulFromId.getElementsByClassName('list-item');
+console.log(listItemsFromClassName);
 
-//cloneNode(true) clones all the elements and subtrees.
-const newClone = div.cloneNode();
-console.log(newClone);
+// getElementsByTagName
+const listItemsFromTagname = ulFromId.getElementsByTagName('li');
+console.log(listItemsFromTagname);
 
-app.append(newClone);
+// Demonstrate live collection
+const newListItem = document.createElement('li');
+newListItem.className = 'list-item';
+newListItem.innerText = 'Air';
+ulFromId.append(newListItem);
+
+// No need to query again since we using live collection
+console.log(listItemsFromClassName);
+console.log(listItemsFromTagname);
+
+// Querying DOM Nodes
+
+// const div = document.createElement('div');
+// div.innerText = 'I am a message';
+
+// app.append(div);
+// setTimeout(() => div.remove(), 2500);
+
+// // old way
+// setTimeout(() => div.parentNode.removeChild(div), 2500);
+
+// 14 - Removing DOM Elements
+
+// const div = document.createElement('div');
+// const span = document.createElement('span');
+
+// span.innerText = 'Can you clone me?';
+// div.append(span);
+
+// app.append(div);
+
+// //cloneNode(false) only clones the top element.
+// const clone = div.cloneNode();
+// console.log(clone);
+
+// //cloneNode(true) clones all the elements and subtrees.
+// const newClone = div.cloneNode();
+// console.log(newClone);
+
+// app.append(newClone);
 
 // 13 - Cloning DOM Elements
 // const div = app.querySelector('div');
