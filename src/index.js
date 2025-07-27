@@ -1,17 +1,76 @@
 import '../assets/css/style.css';
 
 const app = document.getElementById('app');
-app.innerHTML = `<h1>JAVASCRIPT DOM</h1>`;
-
+app.innerHTML = `<h1>JAVASCRIPT DOM</h1>
+<div>
+	Replace me!
+</div>
+`;
 const div = document.createElement('div');
 const span = document.createElement('span');
-const p = document.createElement('p');
-const i = document.createElement('i');
 
+span.innerText = 'Can you clone me?';
 div.append(span);
-div.prepend(p);
 
-console.log(div, span, p, i);
+app.append(div);
+
+//cloneNode(false) only clones the top element.
+const clone = div.cloneNode();
+console.log(clone);
+
+//cloneNode(true) clones all the elements and subtrees.
+const newClone = div.cloneNode();
+console.log(newClone);
+
+app.append(newClone);
+
+// 13 - Cloning DOM Elements
+// const div = app.querySelector('div');
+// const newDiv = document.createElement('div');
+// newDiv.innerText = 'I have been replaced!';
+
+// // New way
+// div.replaceWith(newDiv);
+
+// // Old way
+// const anotherDiv = document.createElement('div');
+// anotherDiv.innerText = 'I replace all';
+
+// setTimeout(() => {
+// 	newDiv.parentNode.replaceChild(anotherDiv, newDiv);
+// }, 2000);
+
+// Replacing DOM elements
+// <ul>
+// 	<li>1</li>
+// </ul>`;
+
+// const ul = app.querySelector('ul');
+
+// ul.insertAdjacentHTML('beforebegin', '<p>Before</p>');
+// ul.insertAdjacentHTML('afterbegin', '<li>First</li>');
+// ul.insertAdjacentHTML('beforeend', '<li>last</li>');
+// ul.insertAdjacentHTML('afterend', '<li>After</li>');
+
+//  011 - inserting DOM as string template
+
+// const div = document.createElement('div');
+// const span = document.createElement('span');
+// const p = document.createElement('p');
+// const i = document.createElement('i');
+// const b = document.createElement('b');
+
+// div.append(span);
+// div.prepend(p);
+// p.before(i);
+
+// Old way of using insertBefore
+// i.parentNode.insertBefore(b, i);
+
+// After: old way pf using insertBefore + nextSibling
+// i.parentNode.insertBefore(b, i.nextSibling);
+
+// console.log(div);
 
 // 09 - Inserting DOM Elements
 
