@@ -2,47 +2,173 @@ import '../assets/css/style.css';
 
 const app = document.getElementById('app');
 app.innerHTML = `<h1>JAVASCRIPT DOM</h1>
-<ul id='list'></ul>
+<button type="button">Click Me!</button>
 `;
-const data = ['Earth', 'Fire', 'Water'];
-const fragment = document.createDocumentFragment();
 
-data.forEach((item) => {
-	const li = document.createElement('li');
-	li.className = 'list-item';
-	li.innerText = item;
-	fragment.append(li);
+const button = document.querySelector('button');
+// console.dir(button);
+
+// // Avoid, doesn't allow multiple events
+// button.onclick = function () {
+// 	console.log('1');
+// };
+
+// function handleClickOnce(e) {
+// 	console.log(e.target);
+// 	button.removeEventListener('click', handleClickOnce);
+// }
+
+// button.addEventListener('click', handleClickOnce);
+button.addEventListener('dblclick');
+
+// arrow functions
+button.addEventListener('dblclick', (e) => {
+	console.log(this, e.target, 'double-clicked!');
 });
 
-// getElementById: HTMLElement
-const ulFromId = document.getElementById('list');
-ulFromId.append(fragment);
+//025 - adding eventListeners and event object
 
-// getElementByClassName: HTMLCollection
-const listItemsFromClassName = ulFromId.getElementsByClassName('list-item');
-console.log(listItemsFromClassName);
+// const button = document.querySelector('button');
 
-// getElementsByTagName
-const listItemsFromTagname = ulFromId.getElementsByTagName('li');
-console.log(listItemsFromTagname);
+// // Old way: Set
+// button.className += ' three';
 
-// Demonstrate live collection
-const newListItem = document.createElement('li');
-newListItem.className = 'list-item';
-newListItem.innerText = 'Air';
-ulFromId.append(newListItem);
+// // Old way: Get
+// console.log(button.className.split(' '));
 
-const ulFromQuerySelector = document.querySelector('#list');
-console.log(ulFromQuerySelector);
+// // New way: classList
+// // Add
+// button.classList.add('four');
 
-ulFromQuerySelector.append(fragment);
+// // Remove
+// button.classList.remove('one');
 
-// ul {background: red;}
-// #list {background: red}
+// // toggle
+// button.classList.toggle('five');
+// setTimeout(() => button.classList.toggle('five'), 2500);
+// 024 -  Setting and Getting classes
+
+// const button = document.querySelector('button');
+
+// // css Text
+// button.style.cssText = 'padding: 25px; margin: 10px 0;';
+
+// // direct property access
+// button.style.fontSize = '22px';
+// button.style.marginTop = '25px';
+// console.log(button.style.fontSize);
+// 023 -  Setting and Getting Inline Styles
+
+// const button = document.querySelector('button');
+
+// //SET
+// button.setAttribute('aria-label', 'Close this modal');
+
+// //GET
+// const value = button.getAttribute('aria-label');
+// console.log(value);
+
+// // .attributes
+// console.log(button.attributes['aria-label']);
+
+// 022 - Setting And Getting HTML Attributes
+
+// 021 - Element properties vs HTML Attributes
+// const input = document.querySelector('input');
+// input.value = 2;
+// console.log(parseInt(input.value, 10));
+// console.dir(input);
+
+// 020 - Finding Sibling elements
+// const item = document.querySelector('.item');
+
+// console.log(item.parentNode);
+// console.log(item.parentElement.parentElement);
+
+// console.log(item.closest('#app'));
+// console.log(item.closest('#body'));
+
+// // 018 - Finding child elements
+// const list = document.querySelector('#list');
+// const selectedIndex = 2;
+
+// // querySelectorAll: NodeList
+// const queryChildren = list.querySelectorAll('li');
+// console.log(queryChildren[selectedIndex], queryChildren.length);
+
+// // .children HTMLCollection
+// console.log(list.children[selectedIndex], list.children.length);
+
+// // .childNodes
+// console.log(list.childNodes);
+
+// // childNodes: nodesList (includes spaces around the elements)
+// console.log(list.childNodes[selectedIndex], list.childNodes.length);
+
+// const listItems = document.querySelectorAll('#list li');
+// console.log(listItems);
+// // traditional / long method of looping over DOM Elements
+// for (let i = 0; i < listItems.length; i++) {
+// 	// console.log(listItems[i]);
+// }
+
+// // forof method to loop over DOM Elements
+// for (const item of listItems) {
+// 	console.log(item);
+// }
+
+// // Using the spread method to loop through
+// [...listItems].forEach((item) => console.log(item));
+
+// // Using from method
+// Array.from(listItems).forEach((item) => console.log(item));
+
+// Looping over DOM Elements
+
+// const data = ['Earth', 'Fire', 'Water'];
+// const fragment = document.createDocumentFragment();
+
+// data.forEach((item) => {
+// 	const li = document.createElement('li');
+// 	li.className = 'list-item';
+// 	li.innerText = item;
+// 	fragment.append(li);
+// });
+
+// // getElementById: HTMLElement
+// const ulFromId = document.getElementById('list');
+// ulFromId.append(fragment);
+
+// // getElementByClassName: HTMLCollection
+// const listItemsFromClassName = ulFromId.getElementsByClassName('list-item');
+// console.log(listItemsFromClassName);
+
+// // getElementsByTagName
+// const listItemsFromTagname = ulFromId.getElementsByTagName('li');
+// console.log(listItemsFromTagname);
+
+// // ul {background: red;}
+// // #list {background: red;}
+
+// const ulFromQuerySelector = document.querySelector('#list');
+// console.log(ulFromQuerySelector);
+
+// ulFromQuerySelector.append(fragment);
+
+// const listItemsFromQSA = ulFromQuerySelector.querySelectorAll('.list-item');
+// console.log(listItemsFromQSA);
+
+// // Demonstrate live collection
+// const newListItem = document.createElement('li');
+// newListItem.className = 'list-item';
+// newListItem.innerText = 'Air';
+// ulFromQuerySelector.append(newListItem);
+
+// console.log(listItemsFromQSA, ulFromQuerySelector.querySelectorAll('.list-item'));
 
 // No need to query again since we using live collection
-console.log(listItemsFromClassName);
-console.log(listItemsFromTagname);
+// console.log(listItemsFromClassName);
+// console.log(listItemsFromTagname);
 
 // Querying DOM Nodes
 
