@@ -2,12 +2,92 @@ import '../assets/css/style.css';
 
 const app = document.getElementById('app');
 app.innerHTML = `<h1>JAVASCRIPT DOM</h1>
-<button type="button">Click Me!</button>
+<button type="add-item">Add Item</button>
+<ul id="list">
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+<li>Item 4</li>
+</ul>
 `;
 
-const button = document.querySelector('button');
-// console.dir(button);
 
+// 029 - Event Delegation and Dynamic
+const button = document.querySelector('button');
+const list = document.querySelector('#list');
+
+function handleClick(event) {
+	if (event.target.nodeName.toLowerCase() !== 'li') {
+		return; // Only handle clicks on <li> elements
+	}
+	console.log(event.target.innerText);
+	// console.log(event.target.nodeName);
+}
+
+list.addEventListener('click', handleClick); 
+
+// items.forEach(item => {
+// 	item.addEventListener('click', handleClick)
+// })
+
+button.addEventListener('click', () => {
+	const items = list.querySelectorAll('li')
+	const li = document.createElement('li');
+	li.innerText = `Item ${items.length + 1}`;
+	list.append(li);
+	
+} )
+
+
+
+// const form = document.querySelector('form');
+// const email = form.querySelector('input[type="email"]');
+// const checkbox = form.querySelector('input[type="checkbox"]');
+
+// function handleSubmit(event) {
+// 	if (!checkbox.checked) {
+// 		event.preventDefault();
+// 		console.log('I am not submitting...');
+// 		console.log(event.defaultPrevented);
+// 		return;
+// 		// has not agreed to the terms
+// 	}
+// 	console.log('Submitted', email.value);
+// }
+
+// form.addEventListener('submit', handleSubmit);
+// example
+// checkbox.addEventListener('click', event => {
+//    event.preventDefault();
+//});
+
+// 028 - Preventing Default event actions
+
+// const one = document.querySelector('.one');
+// const two = document.querySelector('.two');
+// const three = document.querySelector('.three');
+
+// function handleClick(event) {
+// 	event.stopPropagation(); // Prevents the event from bubbling up to parent elements
+// 	event.stopImmediatePropagation(); // Prevents any other listeners of the same event from being called
+// 	console.log(event.target);
+// }
+// one.addEventListener('click', handleClick);
+// two.addEventListener('click', handleClick);
+// three.addEventListener('click', handleClick);
+
+// three.addEventListener('click', (event) => console.log(event), { capture: true });
+
+// 027 - Event Bubbling, Capturing and Propagation
+
+// 026 -  removing eventListeners
+// const button = document.querySelector('button');
+// function handleClick(e) {
+// 	console.log(e.target);
+// 	button.removeEventListener('click', handleClick);
+// }
+// button.addEventListener('click', handleClick);
+// 027 -  Adding eventListeners
 // // Avoid, doesn't allow multiple events
 // button.onclick = function () {
 // 	console.log('1');
@@ -19,12 +99,12 @@ const button = document.querySelector('button');
 // }
 
 // button.addEventListener('click', handleClickOnce);
-button.addEventListener('dblclick');
+// button.addEventListener('dblclick');
 
-// arrow functions
-button.addEventListener('dblclick', (e) => {
-	console.log(this, e.target, 'double-clicked!');
-});
+// // arrow functions
+// button.addEventListener('dblclick', (e) => {
+// 	console.log(this, e.target, 'double-clicked!');
+// });
 
 //025 - adding eventListeners and event object
 
