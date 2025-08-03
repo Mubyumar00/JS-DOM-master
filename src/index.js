@@ -2,41 +2,106 @@ import '../assets/css/style.css';
 
 const app = document.getElementById('app');
 app.innerHTML = `<h1>JAVASCRIPT DOM</h1>
-<button type="add-item">Add Item</button>
-<ul id="list">
-<li>Item 1</li>
-<li>Item 2</li>
-<li>Item 3</li>
-<li>Item 4</li>
-</ul>
+<form name="order">
+	  <label>
+	 	Your name
+		<input type="text" name="fullname"> 
+	  </label>
+	  <label>
+	 	Which pizza would you like?
+		<select name="pizza">
+			<option value="pepperoni">Pepperoni</option>
+			<option value="meaty">Meaty</option>
+			<option value="cheesey">Cheesey</option>
+		</select> 
+	  </label>
+	  <div>
+	 	What size would you like?
+		<label>
+			small
+			<input type="radio" name="size" value="small" checked>
+		</label> 
+		<label>
+			medium
+			<input type="radio" name="size" value="medium">
+		</label> 
+		<label>
+			large
+			<input type="radio" name="size" value="large">
+		</label> 
+		</div>
+		<label>
+			Quantity:
+			<input type="number" name="quantity" value="1" min="1" max="10">
+		</label>
+
+	  <button type='submit'>Submit</button>
+</form>	  
 `;
+
+const form = document.forms.order;
+
+function handleSubmit(event) {
+	event.preventDefault();
+	const formData = new FormData(event.target)
+	// querry string
+	// Content-Type = application/x-www-form-urlencoded
+	// fullname=john+doe&pizza=pepperoni&size=small&quantity=1
+	// const data = [...formData.entries()]
+	// const asString = data.map((x) => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`).join('&');
+
+	const asString = new URLSearchParams(formData).toString();
+	console.log(asString);
+
+	// json
+	const asJSON = JSON.stringify(Object.fromEntries(formData));
+	console.log(asJSON);
+}
+
+form.addEventListener('submit', handleSubmit);
+
+// 031 - accessing forms and elements
+// const form = document.forms.order;
+
+// const fullname = form.elements.fullname;
+// console.log(form);
+
+// function handleInput(event) {
+// 	// access the vallue of the input
+// 	console.log(event.target.value);
+
+// 	// access the form
+// 	console.log(event.target.form)
+// }
+
+// fullname.addEventListener('input', handleInput);
 
 
 // 029 - Event Delegation and Dynamic
-const button = document.querySelector('button');
-const list = document.querySelector('#list');
+// const button = document.querySelector('button');
+// const list = document.querySelector('#list');
 
-function handleClick(event) {
-	if (event.target.nodeName.toLowerCase() !== 'li') {
-		return; // Only handle clicks on <li> elements
-	}
-	console.log(event.target.innerText);
-	// console.log(event.target.nodeName);
-}
+// function handleClick(event) {
+// 	if (event.target.nodeName.toLowerCase() !== 'li') {
+// 		return; // Only handle clicks on <li> elements
+// 	}
+// 	console.log(event.target.innerText);
+// 	// console.log(event.target.nodeName);
+// }
 
-list.addEventListener('click', handleClick); 
+// list.addEventListener('click', handleClick); 
 
-// items.forEach(item => {
-// 	item.addEventListener('click', handleClick)
-// })
+// // items.forEach(item => {
+// // 	item.addEventListener('click', handleClick)
+// // })
 
-button.addEventListener('click', () => {
-	const items = list.querySelectorAll('li')
-	const li = document.createElement('li');
-	li.innerText = `Item ${items.length + 1}`;
-	list.append(li);
+// button.addEventListener('click', () => {
+// 	const items = list.querySelectorAll('li')
+// 	const li = document.createElement('li');
+// 	li.innerText = `Item ${items.length + 1}`;
+// 	list.append(li);
 	
-} )
+// } )
 
 
 
