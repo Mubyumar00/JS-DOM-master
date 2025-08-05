@@ -50,12 +50,23 @@ function handleSubmit(event) {
 	// const data = [...formData.entries()]
 	// const asString = data.map((x) => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`).join('&');
 
+	// asString = data.map((x) => `${x[0]}=${x[1]}`).join('&');
 	const asString = new URLSearchParams(formData).toString();
 	console.log(asString);
 
 	// json
 	const asJSON = JSON.stringify(Object.fromEntries(formData));
 	console.log(asJSON);
+
+	fetch('/fakeapi', {
+    method: 'POST',
+    headers: {
+		// 'Content-Type': 'application/x-www-form-urlencoded',
+		'Content-Type': 'application/json',
+	},
+	// body: asString,
+	body: asJSON,
+  });
 }
 
 form.addEventListener('submit', handleSubmit);
