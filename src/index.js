@@ -2,74 +2,153 @@ import '../assets/css/style.css';
 
 const app = document.getElementById('app');
 app.innerHTML = `<h1>JAVASCRIPT DOM</h1>
-<form name="order">
-	  <label>
-	 	Your name
-		<input type="text" name="fullname"> 
-	  </label>
-	  <label>
-	 	Which pizza would you like?
-		<select name="pizza">
-			<option value="pepperoni">Pepperoni</option>
-			<option value="meaty">Meaty</option>
-			<option value="cheesey">Cheesey</option>
-		</select> 
-	  </label>
-	  <div>
-	 	What size would you like?
-		<label>
-			small
-			<input type="radio" name="size" value="small" checked>
-		</label> 
-		<label>
-			medium
-			<input type="radio" name="size" value="medium">
-		</label> 
-		<label>
-			large
-			<input type="radio" name="size" value="large">
-		</label> 
-		</div>
-		<label>
-			Quantity:
-			<input type="number" name="quantity" value="1" min="1" max="10">
-		</label>
-
-	  <button type='submit'>Submit</button>
-</form>	  
+<form name="example">
+	<select name="drink">
+		<option value="">Select Your Drink...</option>
+		<option value="lemonade" selected>Lemonade</option>
+		<option value="cola">Cola</option>
+		<option value="water">Water</option>
+	</select>
+</form> 
 `;
 
-const form = document.forms.order;
+const form = document.forms.example;
+const select = form.elements.drink;
 
-function handleSubmit(event) {
-	event.preventDefault();
-	const formData = new FormData(event.target)
-	// querry string
-	// Content-Type = application/x-www-form-urlencoded
-	// fullname=john+doe&pizza=pepperoni&size=small&quantity=1
-	// const data = [...formData.entries()]
-	// const asString = data.map((x) => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`).join('&');
+// 1. Selected Value
+select.value = 'water';
+console.log(select.value);
 
-	// asString = data.map((x) => `${x[0]}=${x[1]}`).join('&');
-	const asString = new URLSearchParams(formData).toString();
-	console.log(asString);
+// 2. Selected Index
+const id = 2;
+select.selectedIndex = id;
+console.log(select.selectedIndex);
 
-	// json
-	const asJSON = JSON.stringify(Object.fromEntries(formData));
-	console.log(asJSON);
+// 3. Selected DOM Eelement
+console.log(select.options[select.selectedIndex]);
 
-	fetch('/fakeapi', {
-    method: 'POST',
-    headers: {
-		// 'Content-Type': 'application/x-www-form-urlencoded',
-		'Content-Type': 'application/json',
-	},
-	// body: asString,
-	body: asJSON,
-  });
-}
+// 4. Events
+select.addEventListener('change', () => {
+	console.log(select.value);
+	console.log(select.selectedIndex);
+	console.log(select.options[select.selectedIndex]);
+});
 
-form.addEventListener('submit', handleSubmit);
+// 5. Add new <option> element
+const option = document.createElement('option');
+option.value = 'milk';
+option.text = 'Milk';
+
+select.add(option, 1); // Add at index 1
+
+// // 
+// const form = document.forms.example;
+// const checkbox = form.elements.marketing;
+
+// // 1. Properties that are useful
+// console.dir(checkbox);
+
+// // Set
+// checkbox.checked = true;
+
+// // Get 
+// console.log(checkbox.checked);
+
+// // 2. Events
+// checkbox.addEventListener('change', () => {
+// 	console.log(checkbox.checked);
+// 	console.log(checkbox.value);
+// });
+
+// // 3. Methods
+// checkbox.select();
+// // 037 - HANDLING CHECKBOX INPUT ELEMENTS
+
+
+
+// // 036 -  handling radio input elements
+// const form = document.forms.example;
+// const radios = [...form.elements.color];
+
+// // 1. Properties that are useful
+// radios[2].checked = true;
+// radios.forEach(radio => {
+//   console.log(radio.value);
+//   console.log(radio.checked);
+// });
+
+// // 2. Events
+// const container = form.querySelector('.container');
+
+// container.addEventListener('change', () => {
+// 	// const checked = radios.find((radio) => radio.checked);
+// 	// console.log(checked);
+// 	console.log(form.elements.color.value);
+// })
+
+// // 3. Methods 
+// radios[2].select();
+
+// console.log(container);
+
+// 035 - Handling Handling input elements
+// const form = document.forms.example;
+// const input = form.myInput;
+
+// // 01 - properties that are useful to know for DOM manipulation
+// console.dir(input);
+// // set
+// input.value = 'Hello world!';
+// // input.readOnly = true;
+// // input.disabled = true;
+// // get
+// console.log(input.value);
+
+// // 02 - Events
+// // other events: cut, copy, paste
+// input.addEventListener('focus', () => console.log('Focus'));
+// input.addEventListener('blur', () => console.log('Blur'));
+// input.addEventListener('input', () => console.log('Input'));
+// input.addEventListener('change', () => console.log('Change'));
+
+// // 03 - Methods for DOM manipulation
+// // focus an input
+// input.focus();
+// setTimeout(() => input.blur(), 2500);
+
+// Posting formdata via fetch API
+
+// const form = document.forms.order;
+
+// function handleSubmit(event) {
+// 	event.preventDefault();
+// 	const formData = new FormData(event.target)
+// 	// querry string
+// 	// Content-Type = application/x-www-form-urlencoded
+// 	// fullname=john+doe&pizza=pepperoni&size=small&quantity=1
+// 	// const data = [...formData.entries()]
+// 	// const asString = data.map((x) => `${encodeURIComponent(x[0])}=${encodeURIComponent(x[1])}`).join('&');
+
+// 	// asString = data.map((x) => `${x[0]}=${x[1]}`).join('&');
+// 	const asString = new URLSearchParams(formData).toString();
+// 	console.log(asString);
+
+// 	// json
+// 	const asJSON = JSON.stringify(Object.fromEntries(formData));
+// 	console.log(asJSON);
+
+// 	fetch('/fakeapi', {
+//     method: 'POST',
+//     headers: {
+// 		// 'Content-Type': 'application/x-www-form-urlencoded',
+// 		'Content-Type': 'application/json',
+// 	},
+// 	// body: asString,
+// 	body: asJSON,
+//   });
+// }
+
+// form.addEventListener('submit', handleSubmit);
 
 // 031 - accessing forms and elements
 // const form = document.forms.order;
@@ -87,7 +166,6 @@ form.addEventListener('submit', handleSubmit);
 
 // fullname.addEventListener('input', handleInput);
 
-
 // 029 - Event Delegation and Dynamic
 // const button = document.querySelector('button');
 // const list = document.querySelector('#list');
@@ -100,7 +178,7 @@ form.addEventListener('submit', handleSubmit);
 // 	// console.log(event.target.nodeName);
 // }
 
-// list.addEventListener('click', handleClick); 
+// list.addEventListener('click', handleClick);
 
 // // items.forEach(item => {
 // // 	item.addEventListener('click', handleClick)
@@ -111,10 +189,8 @@ form.addEventListener('submit', handleSubmit);
 // 	const li = document.createElement('li');
 // 	li.innerText = `Item ${items.length + 1}`;
 // 	list.append(li);
-	
+
 // } )
-
-
 
 // const form = document.querySelector('form');
 // const email = form.querySelector('input[type="email"]');
